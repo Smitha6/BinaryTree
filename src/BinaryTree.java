@@ -1,6 +1,4 @@
 
-import org.omg.CORBA.Any;
-
 import java.util.*; // Needed for level-order print routine
 /**
  * BinaryTree class
@@ -73,10 +71,8 @@ public class BinaryTree<AnyType> extends HW5_AbstractClass<AnyType> {
 
 
 
-    //Todo printTreeInOrder DONE (test more)
     /**
      * printTreeInOrder: Prints the tree in order
-     * <Precondition – if applicable>
      */
     public void printTreeInOrder(){
         printTreeInOrder(root);
@@ -94,8 +90,6 @@ public class BinaryTree<AnyType> extends HW5_AbstractClass<AnyType> {
          }
     }
 
-
-    //Todo printTreePostOrder DONE (test more)
     /**
      * printTreePostOrder: Prints the tree in post order
      */
@@ -116,7 +110,6 @@ public class BinaryTree<AnyType> extends HW5_AbstractClass<AnyType> {
     }
 
 
-    //Todo size DONE (test more)
     /**
      * size: returns the size of the tree
      */
@@ -130,20 +123,63 @@ public class BinaryTree<AnyType> extends HW5_AbstractClass<AnyType> {
     }
 
 
-    //Todo depth
     /**
      * depth: Returns the depth of a node
-     * given the data of that node
+     * given the data of that node.
+     * returns -1 if node does not exist or tree is empty
      */
     public int depth(AnyType x){
-        if(root == null)
-            return 0;
+        int answer = depth(x, root);
+        if (answer == -1)
+            return -1;
+        return (int) Math.floor(Math.log(answer)/Math.log(2));
+    }
 
-        //might have to use stack
+    private int depth(AnyType x, BinaryNode<AnyType> node){
+        int numNodes = 0;
+        if (node == null)
+            return -1;
+
+        Queue<BinaryNode> q = new LinkedList<>(); //add() remove()
+
+        q.add(node);
+        if(q.peek().element.equals(x))
+            return 1;
+        numNodes++;
 
 
-        return 1;
+        while(q.size() > 0){
 
+            if (node.left != null && node.right != null){
+                numNodes += 2;
+                if (node.left.element.equals(x) || node.right.element.equals(x))
+                    return numNodes ;
+                q.add(node.left);
+                q.add(node.right);
+            }
+            else if (node.left != null) {
+                numNodes++;
+                if (node.left.element.equals(x))
+                    return numNodes;
+
+                q.add(node.left);
+
+            }
+            else if (node.right != null) {
+                numNodes++;
+                if (node.right.element.equals(x))
+                    return numNodes;
+
+                q.add(node.right);
+            }
+
+
+
+            q.remove();
+            node = q.peek();
+
+        }
+        return -1;
     }
 
 

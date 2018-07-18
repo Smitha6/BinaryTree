@@ -1,6 +1,8 @@
 public class HW5 {
     /**
+     * Homework 5, Summer 2018
      * main: Tests the BinaryTree class
+     * @author A. Smith
      */
     public static void main(String args[]){
 
@@ -15,6 +17,8 @@ public class HW5 {
 
         System.out.println("Tree size on empty = " + empty.size());
 
+        System.out.println("Depth of node with value " + 'a' + " on empty =  " + empty.depth('a'));
+
 
 
 
@@ -22,7 +26,6 @@ public class HW5 {
         BinaryTree<Character> d = new BinaryTree<>('d');
         BinaryTree<Character> e = new BinaryTree<>('e');
         BinaryTree<Character> g = new BinaryTree<>('g');
-        //BinaryTree<Character> h = new BinaryTree<>('h');
         BinaryTree<Character> subLeft = new BinaryTree<>('b',d,e);
         BinaryTree<Character> subRight = new BinaryTree<>('f',g,empty);
         BinaryTree<Character> right = new BinaryTree<>('c',empty,subRight);
@@ -42,7 +45,23 @@ public class HW5 {
 
         System.out.println("\nTree size = " + tree.size());
 
+        char letter = 'a';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'b';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'c';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'd';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'e';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'f';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
+        letter = 'g';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
 
+        letter = 'z';
+        System.out.println("\nDepth of node with value " + letter + " = " + tree.depth(letter));
 
     }
 }
